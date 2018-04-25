@@ -16,16 +16,12 @@ import NotFound from './components/4-o-4/NotFound';
 class App extends Component {
   render() {
     return (
-
-
-
-        <BrowserRouter>
-          <Switch>
-            <Route exact path="/" component={Aminia} />
-            <Route component={NotFound} />
-          </Switch>
-        </BrowserRouter>
-
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/" component={Aminia} />
+          <Route component={NotFound} />
+        </Switch>
+      </BrowserRouter>
     );
   }
 }
