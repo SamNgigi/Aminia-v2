@@ -16,6 +16,7 @@ class App extends Component {
          Is <code>this</code> working? Yeup!!!!
         </p>
         <Button color="primary"><Fa icon="magic" className="mr-1"/> Testing</Button>
+        <p>Is this for real!!</p>
       </div>
     );
   }
