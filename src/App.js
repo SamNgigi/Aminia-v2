@@ -10,18 +10,27 @@ import {Route, Switch, BrowserRouter} from 'react-router-dom';
 
 import './App.css';
 
+import {Provider} from "react-redux";
+import {createStore} from "redux";
+import postApp from "./reducers";
+
 import Aminia from './components/amini/Aminia';
 import NotFound from './components/4-o-4/NotFound';
+
+
+let store = createStore(postApp)
 
 class App extends Component {
   render() {
     return (
-      <BrowserRouter>
-        <Switch>
-          <Route exact path="/" component={Aminia} />
-          <Route component={NotFound} />
-        </Switch>
-      </BrowserRouter>
+      <Provider store={store}>
+        <BrowserRouter>
+          <Switch>
+            <Route exact path="/" component={Aminia} />
+            <Route component={NotFound} />
+          </Switch>
+        </BrowserRouter>
+      </Provider>
     );
   }
 }
