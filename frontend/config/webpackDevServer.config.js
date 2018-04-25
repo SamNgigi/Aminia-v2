@@ -1,4 +1,4 @@
-'use strict';
+// 'use strict';
 
 const errorOverlayMiddleware = require('react-dev-utils/errorOverlayMiddleware');
 const noopServiceWorkerMiddleware = require('react-dev-utils/noopServiceWorkerMiddleware');
@@ -73,6 +73,10 @@ module.exports = function(proxy, allowedHost) {
     // Enable HTTPS if the HTTPS environment variable is set to 'true'
     https: protocol === 'https',
     host: host,
+    // TODO: Added headers
+    headers: {
+      'Access-Control-Allow-Origin': '*'
+    },
     overlay: false,
     historyApiFallback: {
       // Paths with dots should still use the history fallback.
