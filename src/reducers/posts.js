@@ -1,6 +1,6 @@
 const initialState = [
   {
-    content: "Write code!"
+    content: "Write code! Yay!!"
   }
 ]
 
