@@ -77,7 +77,7 @@ class Aminia extends Component {
                   <span className="bar"></span>
                   <label>Tell us what you like.</label>
                 </div>
-                <div className="float-right">
+                <div className="float-right mt-3">
                   <Button color="mdb-color" onClick={this.resetForm}>
                     <Fa icon="refresh" className="mr-2"/>Reset
                   </Button>
