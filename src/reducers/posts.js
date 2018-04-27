@@ -6,8 +6,24 @@ const initialState = [
 
 
 export default function posts(state=initialState, action){
+  let postList = state.slice();
+
   switch (action.type) {
+
+    case 'ADD_POST':
+      return [...state, {text:action.content}];
+
+    case 'EDIT_POST':
+      let postToEdit = postList[action.id];
+      postToEdit.content = action.content;
+      postList.splice(action.id,1, postToEdit)
+      return postList;
+
+    case 'DELETE_POST':
+      postList.splice(action.id, 1);
+      return postList
+
     default:
-      return state;
+      return state
   }
 }

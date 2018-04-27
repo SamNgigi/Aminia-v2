@@ -2,12 +2,47 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 
-import { Button, Fa, ListGroup, ListGroupItem } from 'mdbreact'
+import { Button, Fa, ListGroup, ListGroupItem, FormInline, Input } from 'mdbreact'
 
 import logo from '../../logo.svg';
 import './Aminia.css'
 
-export class Aminia extends Component {
+import {posts} from "../../actions";
+
+class Aminia extends Component {
+
+  state = {
+    content: "",
+    editPostId: null,
+  }
+
+  resetForm = () => {
+    this.setState({
+      content: "",
+      editPostId: null
+    });
+  }
+
+  // When we press the edit button
+  selectForEdit = (id) => {
+    // I think this.props.posts[id] means
+    // the id property for this post
+    let post = this.props.posts[id]
+    this.setState({
+      content: post.content,
+      editPostId: id
+    })
+  }
+
+  submitPost = (event) => {
+    event.preventDefault();
+    if(this.state.editPostId === null) {
+      this.prop.addPost(this.state.content).then(this.resetForm)
+    } else {
+      this.props.editPost(this.state.editPostId, this.state.content).then(this.resetForm)
+    }
+  }
+
   render() {
     return (
       <div className="App">
@@ -19,6 +54,33 @@ export class Aminia extends Component {
         <p className="App-intro">
           What's <code>good</code> Fam!
         </p>
+
+        <h3>Add new post</h3>
+
+
+        <div className="container">
+          <div className="row">
+            <div className="col"></div>
+            <div className="col-lg-10 ml-5">
+              <FormInline className="add-note" onSubmit={this.submitPost}>
+                <Input
+                  label="Tell us what you like."
+                  icon="pencil"
+                  placeholder="Enter post here..."
+                  onChange={(event) => this.setState({text: event.target.value})}
+                  value={this.state.content}
+                />
+
+                <div className="float-right">
+                  <Button color="mdb-color" onClick={this.resetForm}>Reset</Button>
+                  <Button color="success" type="submit">Submit</Button>
+                </div>
+              </FormInline>
+            </div>
+            <div className="col"></div>
+          </div>
+        </div>
+
 
         <h3>Posts</h3>
         <div className="container my-5">
@@ -59,16 +121,24 @@ export class Aminia extends Component {
     )
   }
 }
-
+// From reducers  to view/store
 const mapStateToProps = state => {
   return {
     posts: state.posts,
   }
 }
-
-const mapDispatchToProps = state => {
+// From view to actions to reducers then back to view/store
+const mapDispatchToProps = dispatch => {
   return {
-
+    addPost: (content) => {
+      dispatch(posts.addPost(content));
+    },
+    editPost: (id, content) => {
+      dispatch(posts.editPost(id, content));
+    },
+    deletePost: (id) => {
+      dispatch(posts.deletePost(id));
+    },
   }
 }
 
