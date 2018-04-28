@@ -15,7 +15,13 @@ export default function posts(state=initialState, action){
       return [...state, ...action.posts];
 
     case 'ADD_POST':
-      return [...state, {content:action.content}];
+    /*
+      Uncaught in promise error was  because i had action.content
+      instead of action.post.
+
+      To order by latest post we have action.post before state
+    */
+      return [action.post, ...state];
 
     case 'EDIT_POST':
       let postToEdit = postList[action.id];

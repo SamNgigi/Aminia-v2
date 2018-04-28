@@ -12,7 +12,7 @@ import {posts} from "../../actions";
 class Aminia extends Component {
 
   componentDidMount(){
-    this.props.fetchPosts()
+    this.props.fetchPosts();
   }
 
   state = {
@@ -39,11 +39,11 @@ class Aminia extends Component {
   submitPost = (event) => {
     event.preventDefault();
     if(this.state.editPostId === null) {
-      this.props.addPost(this.state.content)
+      // We add .then() method after installing the redux thunk middleware
+      this.props.addPost(this.state.content).then(this.resetForm)
     } else {
       this.props.editPost(this.state.editPostId, this.state.content)
     }
-    this.resetForm()
   }
 
   render() {
@@ -103,7 +103,7 @@ class Aminia extends Component {
                   {this.props.posts.map((post, id) => (
                     <ListGroupItem key={`post_${id}`} className="list-item">
                           <p className="d-inline">
-                            - {post.content}
+                             {post.content}
                           </p>
                         <div className="d-inline float-right p-3">
                           <Button color="cyan" onClick={() => this.selectForEdit(id)}>
@@ -147,7 +147,11 @@ const mapDispatchToProps = dispatch => {
       dispatch(posts.fetchPosts())
     },
     addPost: (content) => {
-      dispatch(posts.addPost(content));
+      /*
+      We add a return statement to the action dispatch so that we
+      can chain additional callbacks to the API call promise.
+      */
+      return dispatch(posts.addPost(content));
     },
     editPost: (id, content) => {
       dispatch(posts.editPost(id, content));
