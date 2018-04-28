@@ -73,4 +73,9 @@ export const deletePost = index => {
 /*
   I think the type property is the one we refer to in
   reducers/posts.js as action.type in the switch.
+
+  posts.js:7 Uncaught (in promise) SyntaxError: Unexpected token < in JSON at position 0
+    at posts.js:7
+
+  Above error still persists. Not sure why but all functionality working.  
 */
