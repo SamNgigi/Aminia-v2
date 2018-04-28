@@ -149,8 +149,8 @@ const mapDispatchToProps = dispatch => {
     },
     addPost: (content) => {
       /*
-      We add a return statement to the action dispatch so that we
-      can chain additional callbacks to the API call promise.
+        We add a return statement to the action dispatch so that we
+        can chain additional callbacks to the API call promise.
       */
       return dispatch(posts.addPost(content));
     },
