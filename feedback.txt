@@ -1,0 +1,21 @@
+Flask uploads
+
+Angular
+- Fantastic
+- Didn't get value for money
+-
+
+Python
+- Positive feedback on the python module
+- Jame's catch-ups was really helpful
+- Folder structure was an issue
+- Project Euler enjoyed.
+
+
+Project Ideation.
+- Great working on ideas and as a team.
+
+Content Restructure
+- Main content to not rely on the Internet as much for those
+without Internet at home.
+- Starting with python before angular
