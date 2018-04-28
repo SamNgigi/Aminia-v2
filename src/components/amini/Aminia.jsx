@@ -57,6 +57,7 @@ class Aminia extends Component {
         <p className="App-intro">
           What's <code>good</code> Fam!
         </p>
+        <small className="text-muted">Site in developement</small>
 
         <h3>Add new post</h3>
 
