@@ -37,7 +37,7 @@ ALLOWED_HOSTS = ['*']
 INSTALLED_APPS = [
 
     # Mine
-    # 'posts',
+    'posts',
     'webpack_loader',
     'rest_framework',
     'knox',
