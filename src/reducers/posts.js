@@ -1,7 +1,8 @@
 const initialState = [
-  {
-    content: "Write code! Yay!! Am testing with a long long post. Lets try extra long. Let me make this the longest i can try."
-  }
+  // Making our initialState list empty.
+  // {
+  //   content: "Write code! Yay!! Am testing with a long long post. Lets try extra long. Let me make this the longest i can try."
+  // }
 ]
 
 
@@ -9,6 +10,9 @@ export default function posts(state=initialState, action){
   let postList = state.slice();
 
   switch (action.type) {
+
+    case 'FETCH_POSTS':
+      return [...state, ...action.posts];
 
     case 'ADD_POST':
       return [...state, {content:action.content}];

@@ -11,6 +11,10 @@ import {posts} from "../../actions";
 
 class Aminia extends Component {
 
+  componentDidMount(){
+    this.props.fetchPosts()
+  }
+
   state = {
     content: "",
     editPostId: null,
@@ -98,8 +102,9 @@ class Aminia extends Component {
               <ListGroup className="list-group">
                   {this.props.posts.map((post, id) => (
                     <ListGroupItem key={`post_${id}`} className="list-item">
-                          <p className="d-inline">{post.content}</p>
-
+                          <p className="d-inline">
+                            - {post.content}
+                          </p>
                         <div className="d-inline float-right p-3">
                           <Button color="cyan" onClick={() => this.selectForEdit(id)}>
                             <Fa icon="edit" className="mr-1"/> Edit
@@ -138,6 +143,9 @@ const mapStateToProps = state => {
 // From view to actions to reducers then back to view/store
 const mapDispatchToProps = dispatch => {
   return {
+    fetchPosts: () => {
+      dispatch(posts.fetchPosts())
+    },
     addPost: (content) => {
       dispatch(posts.addPost(content));
     },

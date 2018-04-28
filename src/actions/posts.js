@@ -1,3 +1,18 @@
+export const fetchPosts = () => {
+  return dispatch => {
+    let headers = {"Content-Type": "application/json"};
+    return fetch("/api/posts/", {headers,})
+    .then(res => res.json())
+    .then(posts => {
+      console.log(posts);
+      return dispatch({
+        type: 'FETCH_POSTS',
+        posts
+      })
+    })
+  }
+}
+
 export const addPost = content => {
   return {
     type: 'ADD_POST',
