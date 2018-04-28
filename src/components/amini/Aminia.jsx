@@ -39,9 +39,7 @@ class Aminia extends Component {
     } else {
       this.props.editPost(this.state.editPostId, this.state.content)
     }
-    this.setState({
-      content: ""
-    });
+    this.resetForm()
   }
 
   render() {
