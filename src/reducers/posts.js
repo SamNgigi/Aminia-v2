@@ -16,21 +16,21 @@ export default function posts(state=initialState, action){
 
     case 'ADD_POST':
     /*
-      Uncaught in promise error was  because i had action.content
-      instead of action.post.
+      content is undefined error in Aminia.jsx was  because i had
+      action.content instead of action.post.
 
       To order by latest post we have action.post before state
     */
       return [action.post, ...state];
 
     case 'EDIT_POST':
-      let postToEdit = postList[action.id];
-      postToEdit.content = action.content;
-      postList.splice(action.id, 1, postToEdit)
+      let postToEdit = postList[action.index];
+      postToEdit.content = action.post.content;
+      postList.splice(action.index, 1, postToEdit)
       return postList;
 
     case 'DELETE_POST':
-      postList.splice(action.id, 1);
+      postList.splice(action.index, 1);
       return postList
 
     default:

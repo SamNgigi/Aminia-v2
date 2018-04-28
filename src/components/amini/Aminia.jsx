@@ -42,7 +42,7 @@ class Aminia extends Component {
       // We add .then() method after installing the redux thunk middleware
       this.props.addPost(this.state.content).then(this.resetForm)
     } else {
-      this.props.editPost(this.state.editPostId, this.state.content)
+      this.props.editPost(this.state.editPostId, this.state.content).then(this.resetForm)
     }
   }
 
@@ -154,7 +154,7 @@ const mapDispatchToProps = dispatch => {
       return dispatch(posts.addPost(content));
     },
     editPost: (id, content) => {
-      dispatch(posts.editPost(id, content));
+      return dispatch(posts.editPost(id, content));
     },
     deletePost: (id) => {
       dispatch(posts.deletePost(id));
