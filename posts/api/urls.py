@@ -12,5 +12,5 @@ router.register('posts', PostViewSet)
 
 urlpatterns = [
     url("^", include(router.urls)),
-    url("^auth/register/$", RegistrationAPI.as_view()),
+    url("^register/$", RegistrationAPI.as_view()),
 ]
