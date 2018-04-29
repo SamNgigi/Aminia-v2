@@ -103,7 +103,7 @@ class Aminia extends Component {
                   {this.props.posts.map((post, id) => (
                     <ListGroupItem key={`post_${id}`} className="list-item">
                           <p className="d-inline">
-                             {post.content}
+                            - {post.content}
                           </p>
                         <div className="d-inline float-right p-3">
                           <Button color="cyan" onClick={() => this.selectForEdit(id)}>
