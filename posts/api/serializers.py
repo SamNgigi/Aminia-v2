@@ -19,7 +19,7 @@ class LoginUserSerializer(serializers.Serializer):
             "Unable to log in with provided credentials")
 
 
-class CreateUserSerializer(serializers.ModelSerializer):
+class RegisterUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = (
