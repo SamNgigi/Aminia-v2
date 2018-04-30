@@ -16,6 +16,7 @@ import thunk from "redux-thunk";
 
 import postApp from "./reducers";
 
+import Login from "./components/auth/Login";
 import Aminia from './components/amini/Aminia';
 import NotFound from './components/4o4/NotFound';
 
@@ -29,6 +30,7 @@ class App extends Component {
         <BrowserRouter>
           <Switch>
             <Route exact path="/" component={Aminia} />
+            <Route exact path="/login" component={Login} />
             <Route component={NotFound} />
           </Switch>
         </BrowserRouter>
