@@ -19,9 +19,17 @@ export const loadUser = () => {
         })
       } else {
         console.log("Server Error!");
-        throw res
+        throw res;
       }
     })
-    .then()
+    .then(res =>{
+      if(res.status === 200 ){
+        dispatch({type: 'USER_LOADED', user:res.data});
+        return res.data;
+      } else if (res.status >= 400 && res.status < 500 ){
+        dispatch({type: "AUTHENTICATION_ERROR", data: res.data});
+        throw res.data;
+      }
+    })
   }
 }
