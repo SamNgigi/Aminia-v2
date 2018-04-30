@@ -19,8 +19,8 @@ class Login extends Component {
 
   render() {
     return(
-      <Container>
-        <h2 className="mb-5">Login</h2>
+      <Container className="mt-2">
+        <h2 className="mb-2">Login Form</h2>
         <form onSubmit={this.onSubmit}>
           <fieldset>
             <p className="h5 text-center mb-4">Sign In</p>
@@ -48,7 +48,7 @@ class Login extends Component {
                 <Fa icon="check-circle-o" className="mr-1"/>Login
               </Button>
             </div>
-            <p>
+            <p className="text-center">
               Don't have an account? <Link to="/register">Register</Link>
             </p>
           </fieldset>
