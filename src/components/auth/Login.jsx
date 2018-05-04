@@ -1,7 +1,9 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
 
-import {Link} from "react-router-dom";
+import {Link, Redirect} from "react-router-dom";
+
+import {auth} from "../../actions"
 
 import {Container, Input, Button, Fa} from "mdbreact"
 
@@ -14,16 +16,27 @@ class Login extends Component {
 
   onSubmit = event => {
     event.preventDefault()
-    console.error("Not implemented!!!");
+    this.props.login(this.state.username, this.state.password);
+    // console.error("Not implemented!!!");
   }
 
   render() {
+    if(this.props.isAuthenticated){
+      return <Redirect to ="/"/>
+    }
     return(
       <Container className="mt-2">
         <h2 className="mb-2">Login Form</h2>
         <form onSubmit={this.onSubmit}>
           <fieldset>
             <p className="h5 text-center mb-4">Sign In</p>
+            {this.props.errors.length > 0 && (
+              <ul>
+                {this.props.errors.map(error => (
+                  <li key={error.field}>{error.message}</li>
+                ))}
+              </ul>
+            )}
             <Input
               id="username"
               label="Your Username"
@@ -59,11 +72,26 @@ class Login extends Component {
 }
 
 const mapStateToProps = state => {
-  return {};
+  let errors = [];
+  if (state.auth.errors){
+    errors = Object.keys(state.auth.errors).map(field => {
+      return {
+        field, message: state.auth.errors[field]
+      };
+    })
+  }
+  return {
+    errors,
+    isAuthenticated:state.auth.isAuthenticated
+  };
 }
 
 const mapDispatchToProps = dispatch => {
-  return {};
+  return {
+    login: (username, password) =>{
+      return dispatch(auth.login(username, password));
+    }
+  };
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

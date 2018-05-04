@@ -24,7 +24,7 @@ import NotFound from './components/4o4/NotFound';
 
 let store = createStore(postApp, applyMiddleware(thunk));
 
-class RootContainerComponent extends Component {
+class CoreContainerComponent extends Component {
 
   componentDidMount() {
     this.props.loadUser();
@@ -72,13 +72,13 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-let RootContainer = connect(mapStateToProps, mapDispatchToProps)(RootContainerComponent)
+let CoreContainer = connect(mapStateToProps, mapDispatchToProps)(CoreContainerComponent)
 
 export default class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <RootContainer />
+        <CoreContainer />
       </Provider>
     )
   }
