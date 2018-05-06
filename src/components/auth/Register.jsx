@@ -28,7 +28,7 @@ class Login extends Component {
 
     return (
       <Container className="mt-2">
-        <h2 className="mb-2">Register Form</h2>
+        <h2 className="mb-5">Register Form</h2>
         <form onSubmit={this.onSubmit}>
           <fieldset>
             <p className="h5 text-center mb-4">Sign Up</p>
@@ -59,11 +59,11 @@ class Login extends Component {
             />
 
             <div className="text-center">
-              <Button type="submit" color="primary">
+              <Button type="submit" color="info">
                 <Fa icon="check-circle-o" className="mr-1"/>Register
               </Button>
             </div>
-            <p className="text-center">
+            <p className="text-center mt-4">
               Don't have an account? <Link to="/login">Login</Link>
             </p>
           </fieldset>

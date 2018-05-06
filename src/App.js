@@ -18,6 +18,8 @@ import {auth} from "./actions";
 import postApp from "./reducers";
 
 import Login from "./components/auth/Login";
+import Register from "./components/auth/Register";
+
 import Aminia from './components/amini/Aminia';
 import NotFound from './components/4o4/NotFound';
 
@@ -48,6 +50,7 @@ class RootContainerComponent extends Component {
       <BrowserRouter>
         <Switch>
           <PrivateRoute exact path="/" component={Aminia} />
+          <Route exact path="/register" component={Register} />
           <Route exact path="/login" component={Login} />
           <Route component={NotFound} />
         </Switch>

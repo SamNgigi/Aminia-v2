@@ -26,7 +26,7 @@ class Login extends Component {
     }
     return(
       <Container className="mt-2">
-        <h2 className="mb-2">Login Form</h2>
+        <h2 className="mb-5">Login Form</h2>
         <form onSubmit={this.onSubmit}>
           <fieldset>
             <p className="h5 text-center mb-4">Sign In</p>
@@ -58,7 +58,7 @@ class Login extends Component {
 
             <div className="text-center">
               <Button type="submit" color="primary">
-                <Fa icon="check-circle-o" className="mr-1"/>Login
+                <Fa icon="check-key" className="mr-1"/>Login
               </Button>
             </div>
             <p className="text-center">
