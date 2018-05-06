@@ -41,6 +41,7 @@ export const login = (username, password) => {
     let body = JSON.stringify({username, password});
 
     return fetch("/api/auth/login/", {headers, body, method: "POST"})
+<<<<<<< HEAD
     .then(res => {
       if (res.status < 500) {
         return res.json().then(data => {
@@ -63,5 +64,29 @@ export const login = (username, password) => {
         throw res.data;
       }
     })
+=======
+      .then(res => {
+        if (res.status < 500) {
+          return res.json().then(data => {
+            return {status: res.status, data};
+          })
+        } else {
+          console.log("Server Error!");
+          throw res;
+        }
+      })
+      .then(res => {
+        if (res.status === 200) {
+          dispatch({type: 'LOGIN_SUCCESSFUL', data: res.data });
+          return res.data;
+        } else if (res.status === 403 || res.status === 401) {
+          dispatch({type: "AUTHENTICATION_ERROR", data: res.data});
+          throw res.data;
+        } else {
+          dispatch({type: "LOGIN_FAILED", data: res.data});
+          throw res.data;
+        }
+      })
+>>>>>>> Working-Login
   }
 }

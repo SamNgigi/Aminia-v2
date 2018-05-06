@@ -9,20 +9,29 @@ import {Container, Input, Button, Fa} from "mdbreact"
 
 class Login extends Component {
 
-  state = {
-    username: "",
-    password: "",
-  }
+  // state = {
+  //   username: "",
+  //   password: "",
+  // } Testing
 
   onSubmit = event => {
     event.preventDefault()
+<<<<<<< HEAD
     this.props.login(this.state.username, this.state.password);
+=======
+    this.props.login(this.state.username, this.state.password)
+>>>>>>> Working-Login
     // console.error("Not implemented!!!");
   }
 
   render() {
+<<<<<<< HEAD
     if(this.props.isAuthenticated){
       return <Redirect to ="/"/>
+=======
+    if (this.props.isAuthenticated){
+      return <Redirect to="/" />
+>>>>>>> Working-Login
     }
     return(
       <Container className="mt-2">
@@ -31,7 +40,11 @@ class Login extends Component {
           <fieldset>
             <p className="h5 text-center mb-4">Sign In</p>
             {this.props.errors.length > 0 && (
+<<<<<<< HEAD
               <ul>
+=======
+              <ul className="mb-5">
+>>>>>>> Working-Login
                 {this.props.errors.map(error => (
                   <li key={error.field}>{error.message}</li>
                 ))}
@@ -57,7 +70,7 @@ class Login extends Component {
             />
 
             <div className="text-center">
-              <Button type="submit" icon="" color="primary">
+              <Button type="submit" color="primary">
                 <Fa icon="check-circle-o" className="mr-1"/>Login
               </Button>
             </div>
@@ -72,24 +85,41 @@ class Login extends Component {
 }
 
 const mapStateToProps = state => {
+<<<<<<< HEAD
   let errors = [];
   if (state.auth.errors){
+=======
+  let errors = []
+  if (state.auth.errors) {
+>>>>>>> Working-Login
     errors = Object.keys(state.auth.errors).map(field => {
       return {
         field, message: state.auth.errors[field]
       };
     })
+<<<<<<< HEAD
   }
   return {
     errors,
     isAuthenticated:state.auth.isAuthenticated
+=======
+    }
+  return {
+    errors,
+    isAuthenticated: state.auth.isAuthenticated
+>>>>>>> Working-Login
   };
 }
 
 const mapDispatchToProps = dispatch => {
   return {
+<<<<<<< HEAD
     login: (username, password) =>{
       return dispatch(auth.login(username, password));
+=======
+    login: (username, password) => {
+      return dispatch(auth.login(username, password))
+>>>>>>> Working-Login
     }
   };
 }

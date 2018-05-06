@@ -1,7 +1,7 @@
 const initialState = {
   token: localStorage.getItem("token"),
   isAuthenticated:null,
-  isLoading:true,
+  isLoading:false,
   user:null,
   errors: {},
 }
@@ -14,7 +14,7 @@ export default function auth(state=initialState, action) {
       return {...state, isLoading:true};
 
     case 'USER_LOADED':
-      return {...state, isAuthenticated:true, isLoading:false, user: action.user};
+      return {...state, isAuthenticated:true, isLoading: false, user: action.user};
 
     case 'LOGIN_SUCCESSFUL':
       localStorage.setItem("token", action.data.token);
