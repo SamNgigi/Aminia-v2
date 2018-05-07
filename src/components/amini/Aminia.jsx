@@ -7,7 +7,7 @@ import {Button,Fa, ListGroup, ListGroupItem } from 'mdbreact'
 import logo from '../../logo.svg';
 import './Aminia.css'
 
-import {posts} from "../../actions";
+import {posts, auth} from "../../actions";
 
 class Aminia extends Component {
 
@@ -51,6 +51,13 @@ class Aminia extends Component {
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
+          <div style={{textAlign: "right"}}>
+            <h2>
+              {this.props.user.username}
+              <small> (<a onClick={this.props.logout}>Logout</a>)</small>
+            </h2>
+
+          </div>
           <h1 className="App-title">HI!!! Welcome to Aminia!</h1>
         </header>
 
@@ -138,6 +145,7 @@ class Aminia extends Component {
 const mapStateToProps = state => {
   return {
     posts: state.posts,
+    user: state.auth.user,
   }
 }
 // From view to actions to reducers then back to view/store
@@ -159,6 +167,7 @@ const mapDispatchToProps = dispatch => {
     deletePost: (id) => {
       dispatch(posts.deletePost(id));
     },
+    logout: () => dispatch(auth.logout())
   }
 }
 
