@@ -166,6 +166,20 @@ WEBPACK_LOADER = {
     }
 }
 
+
+"""
+Django Rest Framework alloes various kinds of authentication
+techniques including BasicAuth, SessionAuth, TokenAuth.
+
+For singel page applications, TokenAuth and their variations like
+JSON Web Tokens(JWT) are quite common choices.
+
+DRF ships with a built-in TokenAuthentication feature but it is not
+ideal for user facing SPAs because it lacks basic features. Instead,
+we use, django-rest-knox. It is similar to DRF's TokenAuth but much
+better and robust.
+"""
+
 # Rest Framework settings
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': ('knox.auth.TokenAuthentication',),
