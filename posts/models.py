@@ -8,7 +8,8 @@ class Post(models.Model):
     author = models.ForeignKey(
         User,
         related_name="posts",
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE,
+        null=True
     )
     timestamp = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)

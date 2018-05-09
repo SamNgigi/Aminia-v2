@@ -12,28 +12,15 @@ from .serializers import (
 )
 
 
-class UserAPI(generics.RetrieveAPIView):
+class PostViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated, ]
-    serializer_class = UserSerializer
+    serializer_class = PostSerializer
 
-    def get_object(self):
-        return self.request.user
+    def get_queryset(self):
+        return self.request.user.posts.all()
 
-
-class LoginAPI(generics.GenericAPIView):
-    serializer_class = LoginUserSerializer
-
-    def post(self, request, *args, **kwargs):
-        serializer = self.get_serializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        user = serializer.validated_data
-        return Response({
-            "user": UserSerializer(
-                user,
-                context=self.get_serializer_context()
-            ).data,
-            "token": AuthToken.objects.create(user)
-        })
+    def perform_create(self, serializer):
+        serializer.save(author=self.request.user)
 
 
 class RegistrationAPI(generics.GenericAPIView):
@@ -52,12 +39,25 @@ class RegistrationAPI(generics.GenericAPIView):
         })
 
 
-class PostViewSet(viewsets.ModelViewSet):
+class LoginAPI(generics.GenericAPIView):
+    serializer_class = LoginUserSerializer
+
+    def post(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        user = serializer.validated_data
+        return Response({
+            "user": UserSerializer(
+                user,
+                context=self.get_serializer_context()
+            ).data,
+            "token": AuthToken.objects.create(user)
+        })
+
+
+class UserAPI(generics.RetrieveAPIView):
     permission_classes = [permissions.IsAuthenticated, ]
-    serializer_class = PostSerializer
+    serializer_class = UserSerializer
 
-    def get_queryset(self):
-        return self.request.user.posts.all()
-
-    def perform_create(self, serializer):
-        serializer.save(author=self.request.user)
+    def get_object(self):
+        return self.request.user

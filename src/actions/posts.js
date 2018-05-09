@@ -5,7 +5,7 @@ export const fetchPosts = () => {
     let {token} = getState().auth;
 
     if (token) {
-      headers["Authorization"] = `Token ${token}`
+      headers["Authorization"] = `Token ${token}`;
     }
 
     return fetch("/api/posts/", {headers, })
@@ -20,7 +20,7 @@ export const fetchPosts = () => {
       }
     })
     .then(res => {
-      if (res.status === 200){
+      if (res.status === 200) {
         return dispatch({type:'FETCH_POSTS', posts:res.data});
       } else if (res.status === 401 || res.status === 403) {
         dispatch({type: "AUTHENTICATION_ERROR", data: res.data});
@@ -54,7 +54,7 @@ export const addPost = content => {
     })
     .then(res => {
       if (res.status === 201) {
-        return dispatch({type: 'ADD_POST', post:res.data});
+        return dispatch({type: 'ADD_POST', post: res.data});
       } else if (res.status ===401 || res.status === 403) {
         dispatch({type: "AUTHENTICATION_ERROR", data:res.data});
         throw res.data;
