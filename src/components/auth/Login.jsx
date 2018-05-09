@@ -29,7 +29,7 @@ class Login extends Component {
         <h2 className="mb-5">Login Form</h2>
         <form onSubmit={this.onSubmit}>
           <fieldset>
-            <p className="h5 text-center mb-4">Sign In</p>
+            <p className="h5 text-center mb-5">Sign In</p>
             {this.props.errors.length > 0 && (
               <ul className="mb-5">
                 {this.props.errors.map(error => (
@@ -45,7 +45,7 @@ class Login extends Component {
               validate error="wrong"
               success="right"
               onChange = { event => this.setState({username: event.target.value})}
-              className="mb-5"
+              className="mb-5 mt-5"
             />
             <Input
               id="password"
